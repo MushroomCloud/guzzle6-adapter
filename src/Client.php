@@ -75,6 +75,7 @@ final class Client implements HttpClient, HttpAsyncClient
         $handlerStack = new HandlerStack(\GuzzleHttp\choose_handler());
         $handlerStack->push(Middleware::prepareBody(), 'prepare_body');
         $config = array_merge(['handler' => $handlerStack], $config);
+        $config = array_merge(['decode_content' => false], $config);
 
         return new GuzzleClient($config);
     }
